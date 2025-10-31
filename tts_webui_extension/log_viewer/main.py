@@ -43,7 +43,7 @@ def extension__tts_generation_webui():
         "requirements": "git+https://github.com/rsxdalv/tts_webui_extension.log_viewer@main",
         "description": "View, search, and manage log files from the TTS Generation WebUI. Browse installation logs, filter by keywords, and clean up old logs.",
         "extension_type": "interface",
-        "extension_class": "tools",
+        "extension_class": "settings",
         "author": "rsxdalv",
         "extension_author": "rsxdalv",
         "license": "MIT",
