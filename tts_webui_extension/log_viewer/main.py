@@ -1,50 +1,55 @@
+"""Main entry point for the Log Viewer extension."""
+
 import gradio as gr
+
+try:
+    from .tab_pip_install import create_pip_install_tab
+    from .tab_pip_uninstall import create_pip_uninstall_tab
+    from .tab_all_logs import create_all_logs_tab
+except ImportError:
+    from tab_pip_install import create_pip_install_tab
+    from tab_pip_uninstall import create_pip_uninstall_tab
+    from tab_all_logs import create_all_logs_tab
 
 
 def log_viewer_ui():
+    """Create the main Log Viewer UI with tabs."""
     gr.Markdown(
         """
-    # Log viewer
+    # 📋 Log Viewer
     
-    This is a template extension. Replace this content with your extension's functionality.
-    
-    To use it, simply modify this UI and add your custom logic.
+    View and manage log files from the TTS Generation WebUI.
     """
     )
     
-    # Add your UI components here
-    # Example:
-    # with gr.Row():
-    #     with gr.Column():
-    #         input_text = gr.Textbox(label="Input")
-    #         button = gr.Button("Process")
-    #     with gr.Column():
-    #         output_text = gr.Textbox(label="Output")
-    # 
-    # button.click(
-    #     fn=your_processing_function,
-    #     inputs=[input_text],
-    #     outputs=[output_text],
-    #     api_name="log_viewer",
-    # )
+    with gr.Tabs():
+        with gr.Tab("📦 Pip Install Logs"):
+            create_pip_install_tab()
+        
+        with gr.Tab("🗑️ Pip Uninstall Logs"):
+            create_pip_uninstall_tab()
+        
+        with gr.Tab("📁 All Logs"):
+            create_all_logs_tab()
 
 
 def extension__tts_generation_webui():
+    """Extension entry point for TTS Generation WebUI."""
     log_viewer_ui()
     
     return {
         "package_name": "tts_webui_extension.log_viewer",
-        "name": "Log viewer",
-        "requirements": "git+https://github.com/username_missing/tts_webui_extension.log_viewer@main",
-        "description": "A template extension for TTS Generation WebUI",
+        "name": "Log Viewer",
+        "requirements": "git+https://github.com/rsxdalv/tts_webui_extension.log_viewer@main",
+        "description": "View, search, and manage log files from the TTS Generation WebUI. Browse installation logs, filter by keywords, and clean up old logs.",
         "extension_type": "interface",
-        "extension_class": "text-to-speech",
-        "author": "Your Name",
-        "extension_author": "username_missing",
+        "extension_class": "tools",
+        "author": "rsxdalv",
+        "extension_author": "rsxdalv",
         "license": "MIT",
-        "website": "https://github.com/username_missing/tts_webui_extension.log_viewer",
-        "extension_website": "https://github.com/username_missing/tts_webui_extension.log_viewer",
-        "extension_platform_version": "0.0.1",
+        "website": "https://github.com/rsxdalv/tts-generation-webui",
+        "extension_website": "https://github.com/rsxdalv/tts_webui_extension.log_viewer",
+        "extension_platform_version": "0.1.0",
     }
 
 
@@ -55,6 +60,4 @@ if __name__ == "__main__":
         with gr.Tab("Log viewer", id="log_viewer"):
             log_viewer_ui()
 
-    demo.launch(
-        server_port=7772,  # Change this port if needed
-    )
+    demo.launch(server_port=7772)
