@@ -8,11 +8,8 @@ from pathlib import Path
 
 def get_log_directory():
     """Get the path to the logs directory."""
-    # Assuming the extension is in workspace/tts_webui_extension.log_viewer
-    current_dir = Path(__file__).parent
-    # Go up to the main directory
-    main_dir = current_dir.parent.parent.parent.parent
-    log_dir = main_dir / "logs"
+    # Use current working directory of the main Python process
+    log_dir = Path.cwd() / "logs"
     return str(log_dir)
 
 
