@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tts_webui_extension.log_viewer"
-version = "0.1.1"
+version = "0.2.0"
 description = "View, search, and manage log files from the TTS Generation WebUI"
 readme = "README.md"
 requires-python = ">=3.8"

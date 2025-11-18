@@ -8,8 +8,12 @@ from pathlib import Path
 
 def get_log_directory():
     """Get the path to the logs directory."""
-    # Use current working directory of the main Python process
-    log_dir = Path.cwd() / "logs"
+    # Logs are now stored under installer_scripts/logs relative to CWD
+    log_dir = Path.cwd() / "installer_scripts" / "logs"
+    try:
+        log_dir.mkdir(parents=True, exist_ok=True)
+    except Exception:
+        pass
     return str(log_dir)
 
 
